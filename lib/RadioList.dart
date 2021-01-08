@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:radio/RadioListBag.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 class RadioList extends StatelessWidget {
     List<RadioListBag> data = [
@@ -9,6 +11,23 @@ class RadioList extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
+      final assetsAudioPlayer = AssetsAudioPlayer();
+
+      AssetsAudioPlayer.newPlayer().open(
+        Audio.network("http://online.hitfm.ua/HitFM"),
+        autoStart: true,
+        showNotification: true,
+      );
+
+      /*
+      try {
+        await assetsAudioPlayer.open(
+          Audio.network("http://www.mysite.com/myMp3file.mp3"),
+        );
+      } catch (t) {
+        //mp3 unreachable
+      }
+*/
       return Scaffold(
         appBar: AppBar(
           title: Text('App bar title')
