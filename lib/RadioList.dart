@@ -16,23 +16,12 @@ class PlayerControl {
     // );
 
     assetsAudioPlayer.open(
-      Audio.network("http://online.hitfm.ua/HitFM"),
-      autoStart: true,
+      Audio.network(source),
+      // autoStart: true,
       showNotification: true,
     );
+    assetsAudioPlayer.play();
     print('here');
-
-    // try {
-    //   assetsAudioPlayer.open(
-    //       Audio.network(source),
-    //       autoStart: true,
-    //   );
-    //
-    //   // assetsAudioPlayer.play();
-    // } catch (t) {
-    //   print(t);
-    // }
-
 
   }
 
@@ -92,26 +81,73 @@ class RadioList extends StatelessWidget {
               Card(child:
                 ListTile(
                     title: Text('Люкс ФМ'),
-                    subtitle: Text('Радіо виключно гарного настрою. Веселі ведучі, жарти, добірна сучасна музика. Ви любите жити, любите вечірки з друзями і не любите спати? Тоді настроюйся на хвилю радіо Люкс ФМ.'),
+                    // subtitle: Text('Радіо виключно гарного настрою. Веселі ведучі, жарти, добірна сучасна музика. Ви любите жити, любите вечірки з друзями і не любите спати? Тоді настроюйся на хвилю радіо Люкс ФМ.'),
                     trailing: IconButton(
                       icon: Icon(
-                          (selected == '5') ? Icons.pause_circle_outline : Icons.play_circle_outline,
+                          (selected == '6') ? Icons.pause_circle_outline : Icons.play_circle_outline,
                           size: 40
                       ),
                       onPressed: () {
-
-
-                        if (selected == '7') {
-                          print('====== stop 7');
+                        if (selected == '6') {
+                          print('====== stop 6');
+                          playerControl.stop();
+                          selected = '0';
                         } else {
-                          selected = '7';
-                          print('====== start 7');
+                          selected = '6';
+                          playerControl.play("http://icecast.luxnet.ua/lux_mp3");
+                          print('====== start 6');
                         }
-
                       }
                     )
                 )
-              )
+              ),
+              Card(child:
+                ListTile(
+                    title: Text('Авторадіо'),
+                    // subtitle: Text('Радіо виключно гарного настрою. Веселі ведучі, жарти, добірна сучасна музика. Ви любите жити, любите вечірки з друзями і не любите спати? Тоді настроюйся на хвилю радіо Люкс ФМ.'),
+                    trailing: IconButton(
+                        icon: Icon(
+                            (selected == '7') ? Icons.pause_circle_outline : Icons.play_circle_outline,
+                            size: 40
+                        ),
+                        onPressed: () {
+                          if (selected == '7') {
+                            print('====== stop 7');
+                            playerControl.stop();
+                            selected = '0';
+                          } else {
+                            selected = '7';
+                            playerControl.play("http://cast.radiogroup.com.ua:8000/avtoradio");
+                            print('====== start 7');
+                          }
+                        }
+                    )
+                )
+              ),
+                Card(child:
+                ListTile(
+                    title: Text('Радіо Максимум'),
+                    // subtitle: Text('Радіо виключно гарного настрою. Веселі ведучі, жарти, добірна сучасна музика. Ви любите жити, любите вечірки з друзями і не любите спати? Тоді настроюйся на хвилю радіо Люкс ФМ.'),
+                    trailing: IconButton(
+                        icon: Icon(
+                            (selected == '8') ? Icons.pause_circle_outline : Icons.play_circle_outline,
+                            size: 40
+                        ),
+                        onPressed: () {
+                          if (selected == '8') {
+                            print('====== stop 8');
+                            playerControl.stop();
+                            selected = '0';
+                          } else {
+                            selected = '8';
+                            playerControl.play("http://icecast.luxnet.ua/radio24_mp3");
+                            print('====== start 8');
+                          }
+                        }
+                    )
+                )
+                )
+
               ]
           )
         )
